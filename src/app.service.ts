@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Interval } from '@nestjs/schedule';
+import { Cron, CronExpression } from '@nestjs/schedule';
 import { Logger } from '@nestjs/common/services';
 
 @Injectable()
@@ -9,7 +9,7 @@ export class AppService {
     return 'Hello World!';
   }
 
-  @Interval(5000)
+  @Cron(CronExpression.EVERY_10_MINUTES)
   workerLogger() {
     this.log.warn('Worker processing!');
   }
